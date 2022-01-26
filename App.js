@@ -4,6 +4,7 @@ import {StyleSheet, Text, View, Button} from 'react-native';
 /* import Geolocation from '@react-native-community/geolocation'; */
 import {PermissionsAndroid} from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 const App = () => {
   useEffect(() => {
@@ -53,15 +54,23 @@ const App = () => {
 
   return (
     <View style={styles.container}>
-    <Text>Get your Location Geographic Coordinates</Text>
-    {info.length!==0?(<View>
-      <Text>Latitude : {info.latitude}</Text>
-      <Text>Longitude : {info.longitude}</Text>
-    </View>):null}
-    
-    
+    <FontAwesome5
+      name='map-marker-alt'
+      size={100}
+      color='red'
+    />
+      <Text style={styles.titleText}>
+        Get your Location Geographic Coordinates
+      </Text>
+      {info.length !== 0 ? (
+        <View>
+          <Text style={styles.locationText}>Latitude : {info.latitude}</Text>
+          <Text style={styles.locationText}>Longitude : {info.longitude}</Text>
+        </View>
+      ) : null}
+
       <View style={styles.button}>
-      <Button title="Get Location" onPress={getLocation} />
+        <Button title="Get Location" onPress={getLocation} />
       </View>
     </View>
   );
@@ -73,9 +82,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  button:{
-    marginTop:20
-  }
+  button: {
+    marginTop: 20,
+  },
+  titleText: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    margin: 10,
+  },
+  locationText: {
+    fontSize: 40,
+    margin: 10,
+  },
 });
 
 export default App;
